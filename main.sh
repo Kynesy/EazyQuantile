@@ -1,7 +1,7 @@
 #!/bin/bash
 
 STREAM_LENGHT=4096
-QUANTILE=0.5
+QUANTILE=0.99
 
 usage() {
     echo "Usage: $0 [-s] [-c] [-n] [-u] [-e] [-z]" 1>&2
@@ -13,6 +13,7 @@ usage() {
     echo "  -z  Test with Zipfian distribution" 1>&2
     exit 1
 }
+
 
 setup() {
     echo "Setting up the project..."

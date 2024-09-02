@@ -16,7 +16,7 @@ double harmonic_generalized(int n, double s) {
     return sum;
 }
 
-// Funzione Zipf che genera numeri distribuiti secondo Zipf
+// generazione dei numeri zipfiani
 int zipf(double s, int n) {
     static int first = 1;
     static double c = 0;
@@ -73,7 +73,6 @@ int main(int argc, char *argv[]) {
 
     int array_length = atoi(argv[1]);  // Numero di elementi da generare
 
-    // Inizializza il generatore di numeri casuali
     srand(time(NULL));
 
     // Genera e stampa array di numeri distribuiti secondo Zipf

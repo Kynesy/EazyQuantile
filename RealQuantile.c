@@ -1,11 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * @brief Struttura che rappresenta un flusso di dati.
+ *
+ * Questa struttura contiene un array dinamico di dati e la lunghezza attuale dell'array.
+ */
 typedef struct {
-    double *data;
-    int length;
+    double *data;  /**< Puntatore all'array di dati. */
+    int length;    /**< Lunghezza dell'array di dati. */
 } StreamData;
 
+/**
+ * @brief Crea una nuova istanza di StreamData.
+ *
+ * Questa funzione alloca memoria per una nuova struttura StreamData e inizializza i campi
+ * `data` e `length` a `NULL` e `0` rispettivamente.
+ *
+ * @return Puntatore alla nuova struttura StreamData.
+ */
 StreamData* create_StreamData() {
     StreamData *streamData = (StreamData *)malloc(sizeof(StreamData));
     streamData->data = NULL;
@@ -13,6 +26,15 @@ StreamData* create_StreamData() {
     return streamData;
 }
 
+/**
+ * @brief Aggiunge un valore alla struttura StreamData.
+ *
+ * Questa funzione ridimensiona dinamicamente l'array `data` per aggiungere un nuovo valore.
+ * In caso di errore di allocazione della memoria, il programma termina.
+ *
+ * @param streamData Puntatore alla struttura StreamData a cui aggiungere il valore.
+ * @param value Valore da aggiungere alla struttura.
+ */
 void add_value(StreamData *streamData, double value) {
     streamData->data = realloc(streamData->data, (streamData->length + 1) * sizeof(double));
     if (streamData->data == NULL) {
@@ -23,18 +45,44 @@ void add_value(StreamData *streamData, double value) {
     streamData->length++;
 }
 
+/**
+ * @brief Libera la memoria associata a una struttura StreamData.
+ *
+ * Questa funzione libera la memoria allocata per l'array `data` e per la struttura StreamData stessa.
+ *
+ * @param streamData Puntatore alla struttura StreamData da distruggere.
+ */
 void destroy_StreamData(StreamData *streamData) {
     free(streamData->data);
     free(streamData);
 }
 
-// Funzione di confronto per qsort
+/**
+ * @brief Funzione di confronto per l'ordinamento dei dati.
+ *
+ * Questa funzione viene utilizzata da `qsort` per confrontare due valori `double`.
+ *
+ * @param a Puntatore al primo valore da confrontare.
+ * @param b Puntatore al secondo valore da confrontare.
+ * @return -1 se `a` è minore di `b`, 1 se `a` è maggiore di `b`, 0 se sono uguali.
+ */
 int compare(const void *a, const void *b) {
     if (*(double*)a > *(double*)b) return 1;
     else if (*(double*)a < *(double*)b) return -1;
     else return 0;
 }
 
+/**
+ * @brief Calcola il quantile di un array di dati.
+ *
+ * Questa funzione ordina l'array `data`, quindi calcola il quantile specificato utilizzando
+ * l'interpolazione lineare se necessario.
+ *
+ * @param data Array di dati su cui calcolare il quantile.
+ * @param length Lunghezza dell'array di dati.
+ * @param quantile Il quantile desiderato (valore tra 0 e 1).
+ * @return Il valore del quantile calcolato.
+ */
 double calculate_quantile(double data[], int length, double quantile) {
     qsort(data, length, sizeof(double), compare); // ORDINAMENTO
     

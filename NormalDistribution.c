@@ -4,13 +4,13 @@
 #include <math.h>
 #include <time.h>
 
-# define M_PI 3.14159265358979323846
+# define M_PI 3.14159265358979323846 //era definita in use math defines, ma per qualche motivo l'import dava errore, allora ho copiato il define direttamente da li
 #define LOWER 0
 #define UPPER 1
 #define MU 0.5
 #define SIGMA 0.125
 
-// Funzione per generare numeri casuali con distribuzione normale (Box-Muller Transform)
+// Funzione per generare numeri casuali con distribuzione normale (trasformata di Box-Muller)
 double rand_normal(double mean, double stddev) {
     double u1 = ((double)rand() / RAND_MAX);
     double u2 = ((double)rand() / RAND_MAX);
@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
     // Genera e stampa dati stream con distribuzione normale troncata
     for (int i = 0; i < ARRAY_LENGTH; i++) {
         double value = truncnorm(LOWER, UPPER, MU, SIGMA);
-        fprintf(stdout, "%f\n", value);  // Aggiungere un newline per separare i valori
+        fprintf(stdout, "%f\n", value); 
     }
 
     return 0;

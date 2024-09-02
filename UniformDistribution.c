@@ -3,7 +3,6 @@
 #include <time.h>
 
 int main(int argc, char *argv[]) {
-    // Inizializza il generatore di numeri casuali
     srand(time(NULL));
 
     if (argc != 2) {
@@ -14,8 +13,8 @@ int main(int argc, char *argv[]) {
 
     // Genera e stampa dati stream con distribuzione uniforme tra 0 e 1
     for (int i = 0; i < ARRAY_LENGTH; i++) {
-        double value = (double)rand() / RAND_MAX;  // Genera un numero casuale tra 0 e 1
-        fprintf(stdout, "%f\n", value);  // Aggiungere un newline per separare i valori
+        double value = (double)rand() / RAND_MAX;
+        fprintf(stdout, "%f\n", value); 
     }
 
     return 0;

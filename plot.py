@@ -25,14 +25,16 @@ def main():
     if len(sys.argv) < 3:
         print("Usage: ./"+ sys.argv[0] +" [real_quantile_array] [eazy_quantile_array]")
         sys.exit(1)
-
+    # parsing input
     real_quantile = list(map(float, sys.argv[1].split()))
     eazy_quantile = list(map(float, sys.argv[2].split()))
 
+    # controllo lunghezza
     if len(real_quantile) != len(eazy_quantile):
         print("Error: Both arrays must have the same length.")
         sys.exit(1)
 
+    # plot
     plotter = QuantilePlotter(real_quantile, eazy_quantile)
     plotter.plot()
 
