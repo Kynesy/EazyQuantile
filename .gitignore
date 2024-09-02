@@ -2,3 +2,5 @@ NormalDistribution
 UniformDistribution
 ExponentialDistribution
 ZipfianDistribution
+RealQuantile
+EazyQuantile
